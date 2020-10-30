@@ -65,7 +65,7 @@ export class TodoList extends React.Component {
     return (
       <div>
         <AddTodoComponent addTodo={this.addTodo}></AddTodoComponent>
-        <h2>Todos</h2>
+        <h2>Tasks</h2>
         <ul>
           {this.state.todos.map((todo) => {
             return (

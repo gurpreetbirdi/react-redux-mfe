@@ -14,7 +14,7 @@ export class AddTodo extends React.Component {
   render() {
     return (
       <div>
-        <label>Add Todo Object</label>
+        <label>Add Task</label>
         <input
           type="Text"
           placeholder="Enter Todo"

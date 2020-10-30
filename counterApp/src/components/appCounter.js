@@ -82,7 +82,7 @@ export class AppCounter extends React.Component {
           increment={this.incrementLocalCounter}
           decrement={this.decrementLocalCounter}
         ></Counter>
-        <h2>Todo Counter</h2>
+        <h2>Tasks Counter</h2>
         <span>{this.state.todo}</span>
       </div>
     );
