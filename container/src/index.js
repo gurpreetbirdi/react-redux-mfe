@@ -1,7 +1,6 @@
-(function() {
+import React from "react";
+import ReactDOM from "react-dom";
 
-    window["micro-front-end-context"] = true;
-    window["mountCounter"]("counter");
-    window["mountTodo"]("todo");
+import App from "./App";
 
-})();
+ReactDOM.render(<App />, document.getElementById("root"));

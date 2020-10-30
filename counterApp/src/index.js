@@ -4,7 +4,6 @@ import { render } from "react-dom";
 import { AppCounter } from "./components/appCounter";
 
 const mountCounter = (elementId) => {
-  console.log({ elementId });
   const renderElemement = document.getElementById(elementId);
   render(<AppCounter />, renderElemement);
 };
