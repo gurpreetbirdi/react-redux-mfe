@@ -1,26 +1,53 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const { loadApp } = window;
+// const ChildApp = (props) => {
+//   const { loadApp } = window;
 
-const loadComponent = (name) => {
-  const componentList = loadApp(name) ? loadApp(name).component : null;
-  console.log("componentList", componentList);
-  return componentList;
-};
+//   const loadComponent = (name) => {
+//     const componentList = loadApp(name) ? loadApp(name).component : null;
+//     console.log("componentList", componentList);
+//     return componentList;
+//   };
 
-const ChildApp = (props) => {
-  console.log("props.appName", props.appName);
-  const component = loadComponent(props.appName);
-  const ChildAppComponent = component == null ? null : component.app;
-  console.log("ChildAppComponent", ChildAppComponent);
-  if (ChildAppComponent === null) {
-    return (
-      <div>
-        <strong>App does not exist</strong>
-      </div>
-    );
+//   console.log("props.appName", props.appName);
+//   const ChildAppComponent = loadComponent(props.appName);
+
+//   if (!ChildAppComponent) {
+//     return (
+//       <div>
+//         <strong>App does not exist</strong>
+//       </div>
+//     );
+//   }
+//   return <ChildAppComponent />;
+// };
+
+class ChildApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.loadComponent = this.loadComponent.bind(this);
   }
-  return <ChildAppComponent />;
-};
 
-export default ChildApp;
+  loadComponent(name) {
+    const componentList = loadApp(name) ? loadApp(name).component : null;
+    return componentList;
+  }
+
+  render() {
+    const component = this.loadComponent(this.props.appName);
+    const ChildAppRootComponent = component == null ? null : component;
+    if (ChildAppRootComponent === null) {
+      return (
+        <div>
+          <strong>App does not exist</strong>
+        </div>
+      );
+    }
+    return <ChildAppRootComponent {...this.props} />;
+  }
+}
+
+const mapStateToProps = (state) => ({ count: state.counter.count });
+
+export default connect(mapStateToProps)(ChildApp);
