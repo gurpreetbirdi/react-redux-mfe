@@ -11,7 +11,7 @@ const loadComponent = (name) => {
 const ChildApp = (props) => {
   console.log("props.appName", props.appName);
   const component = loadComponent(props.appName);
-  const ChildAppComponent = component == null ? null : component.app;
+  const ChildAppComponent = component == null ? null : component;
   console.log("ChildAppComponent", ChildAppComponent);
   if (ChildAppComponent === null) {
     return (
