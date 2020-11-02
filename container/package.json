@@ -1,8 +1,8 @@
 {
   "name": "react-redux-mfe-container",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
-  "description": "This is a sample app as the MF shell",
+  "description": "This is a sample app as the MF container",
   "keywords": [
     "redux",
     "micro frontend",
@@ -14,13 +14,14 @@
   ],
   "scripts": {
     "build": "webpack",
-    "start": "node ./src/config/web.config.js && webpack serve"
+    "start": "webpack serve"
   },
   "private": false,
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "redux-micro-frontend": "1.0.0"
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",

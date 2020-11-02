@@ -1,8 +1,8 @@
 const fs = require("fs-extra");
 
 const bundleJsUrls = [
-  "http://localhost:4001/main.bundle.js",
-  "http://localhost:5001/main.bundle.js",
+  "http://localhost:3001/main.bundle.js",
+  // "http://localhost:5001/main.bundle.js",
 ];
 
 function loadMicrofrontendBundle() {
@@ -23,7 +23,7 @@ const htmlContent =
   "</body>\n" +
   "</html>\n";
 
-fs.writeFile("./index.html", htmlContent, function (err) {
+fs.writeFile("./src/index.html", htmlContent, function (err) {
   if (err) {
     console.log("failed to create index.html file");
   }

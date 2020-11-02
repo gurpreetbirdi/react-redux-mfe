@@ -1,15 +1,23 @@
 import React from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-import { AppCounter } from "./components/appCounter";
+import store from "./store";
+import AppCounter from "./components/AppCounter";
 
-const mountCounter = (elementId) => {
-  const renderElemement = document.getElementById(elementId);
-  render(<AppCounter />, renderElemement);
-};
+const { registerRender } = window;
 
-window["mountCounter"] = mountCounter;
-
-if (!window["micro-front-end-context"]) {
-  mountCounter("app");
+function domRenderer() {
+  ReactDOM.render(
+    <Provider store={store}>
+      <AppCounter />
+    </Provider>,
+    document.getElementById("root")
+  );
 }
+// Function to execute when application is launch in parent application.
+// We are passing the root component which will render first in parent app.
+registerRender("counter", {
+  component: AppCounter,
+  domRenderer,
+});

@@ -1,15 +1,15 @@
 import { ACTION_TYPES } from "../actionTypes";
 
-export const IncrementLocalCounter = () => {
+export const incrementCounter = () => {
   return {
-    type: ACTION_TYPES.INCREMENT_LOCAL,
+    type: ACTION_TYPES.INCREMENT,
     payload: null,
   };
 };
 
-export const DecrementLocalCounter = () => {
+export const decrementCounter = () => {
   return {
-    type: ACTION_TYPES.DECREMENT_LOCAL,
+    type: ACTION_TYPES.DECREMENT,
     payload: null,
   };
 };
