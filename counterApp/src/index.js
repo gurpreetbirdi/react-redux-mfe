@@ -3,26 +3,28 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import LocalCounter from "./components/LocalCounter";
-import { store as localStore } from "./store";
+import { counterReducer, store as localStore } from "./store";
 
-const mountCounter = (elementId, globalStore) => {
-  console.log({ globalStore });
+const mountApp = (elementId, globalStore) => {
   let store = localStore;
   if (globalStore) {
     store = globalStore;
   }
   const renderElemement = document.getElementById(elementId);
-  render(
-    <Provider store={store}>
-      <LocalCounter />
-    </Provider>,
-    renderElemement
-  );
-  return { component: "LocalCounter" };
+  if (renderElemement) {
+    render(
+      <Provider store={store}>
+        <LocalCounter />
+      </Provider>,
+      renderElemement
+    );
+  }
 };
 
-window["mountCounter"] = mountCounter;
+window["mountCounter"] = mountApp;
+
+window["counterReducer"] = counterReducer;
 
 if (!window["micro-front-end-context"]) {
-  mountCounter("app");
+  mountApp("app");
 }

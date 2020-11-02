@@ -1,86 +1,44 @@
-import React from "react";
-import { createStore } from "redux";
-import { GlobalStore } from "redux-micro-frontend";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Todo } from "./todo";
-import { AddTodo as AddTodoComponent } from "./addTodo";
-import { AddTodo, RemoveTodo } from "../actions/lcoal/todo.action";
-import { TodoReducer } from "../reducers/Todo.Reducer";
+import { setTodo } from "../store";
 
-export class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
+const ToDoList = () => {
+  const dispatch = useDispatch();
 
-    this.state = {
-      todos: [],
-      globalCounter: 0,
-    };
+  const [text, setText] = useState("");
+  const { todos } = useSelector((state) => state.todo);
+  const globalState = useSelector((state) => state);
 
-    this.addTodo = this.addTodo.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
-    this.counterChanged = this.counterChanged.bind(this);
-    this.stateChanged = this.stateChanged.bind(this);
+  const addTodo = () => {
+    const tempTodos = todos.slice(0);
+    tempTodos.push({ id: Math.random(), item: text });
+    dispatch(setTodo(tempTodos));
+    setText("");
+  };
 
-    this.globalStore = GlobalStore.Get();
-
-    this.store = createStore(TodoReducer);
-
-    this.globalStore.RegisterStore("TodoApp", this.store, [
-      GlobalStore.AllowAll,
-    ]);
-
-    try {
-      this.globalStore.SubscribeToPartnerState(
-        "TodoApp",
-        "CounterApp",
-        this.counterChanged
-      );
-    } catch (error) {
-      //Since
-    }
-    this.globalStore.Subscribe("TodoApp", this.stateChanged);
-  }
-
-  addTodo(description) {
-    this.globalStore.DispatchAction("TodoApp", AddTodo(description));
-  }
-
-  removeTodo(todoId) {
-    this.globalStore.DispatchAction("TodoApp", RemoveTodo(todoId));
-  }
-
-  counterChanged(counterState) {
-    this.setState({
-      globalCounter: counterState.global,
-    });
-  }
-
-  stateChanged(todoState) {
-    this.setState({
-      todos: todoState,
-    });
-  }
-
-  render() {
-    return (
+  return (
+    <div>
+      <h2>ToDo</h2>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button onClick={addTodo}>Add TODO</button>
       <div>
-        <AddTodoComponent addTodo={this.addTodo}></AddTodoComponent>
-        <h2>Tasks</h2>
         <ul>
-          {this.state.todos.map((todo) => {
-            return (
-              <li key={todo.id}>
-                <Todo
-                  id={todo.id}
-                  description={todo.description}
-                  removeTodo={this.removeTodo}
-                />
-              </li>
-            );
-          })}
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.item}</li>
+          ))}
         </ul>
-        <div>Global Counter: {this.state.globalCounter}</div>
       </div>
-    );
-  }
-}
+      <div>
+        <h2>count from counter-app</h2>
+        <span>{globalState.counter && globalState.counter.count}</span>
+      </div>
+    </div>
+  );
+};
+
+export default ToDoList;

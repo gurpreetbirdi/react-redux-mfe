@@ -10,7 +10,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Micro-Frontend",
-      template: "index.html",
+      template: "./src/index.html",
     }),
   ],
   module: {

@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
-import store, { setComponent } from "./store";
+import { combineStore } from "./store";
 
 const App = () => {
-  const dispatch = useDispatch();
-
   useEffect(() => {
     (function () {
       window["micro-front-end-context"] = true;
-      const local = window["mountCounter"]("counter", store);
-      console.log({ local });
-      dispatch(setComponent(local.component));
-      window["mountTodo"]("todo");
+      const counterReducer = window["counterReducer"];
+      const todoReducer = window["todoReducer"];
+      const combinedStore = combineStore(counterReducer, todoReducer);
+      window["mountCounter"]("counter", combinedStore);
+      window["mountTodo"]("todo", combinedStore);
     })();
   }, []);
 

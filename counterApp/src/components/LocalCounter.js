@@ -5,16 +5,14 @@ import { setCount } from "../store";
 
 const LocalCounter = () => {
   const dispatch = useDispatch();
-  const { count } = useSelector((state) => state);
-  const state = useSelector((state) => state);
-  console.log({ state });
+  const { count } = useSelector((state) => state.counter);
 
   return (
     <div>
       <h2>Counter</h2>
       <span>{count}</span>
       <button onClick={() => dispatch(setCount(count + 1))}>+</button>
-      <button onClick={() => dispatch(setCount(count + 1))}>-</button>
+      <button onClick={() => dispatch(setCount(count - 1))}>-</button>
     </div>
   );
 };
