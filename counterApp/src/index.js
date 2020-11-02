@@ -1,11 +1,24 @@
 import React from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
 
-import { AppCounter } from "./components/appCounter";
+import LocalCounter from "./components/LocalCounter";
+import { store as localStore } from "./store";
 
-const mountCounter = (elementId) => {
+const mountCounter = (elementId, globalStore) => {
+  console.log({ globalStore });
+  let store = localStore;
+  if (globalStore) {
+    store = globalStore;
+  }
   const renderElemement = document.getElementById(elementId);
-  render(<AppCounter />, renderElemement);
+  render(
+    <Provider store={store}>
+      <LocalCounter />
+    </Provider>,
+    renderElemement
+  );
+  return { component: "LocalCounter" };
 };
 
 window["mountCounter"] = mountCounter;

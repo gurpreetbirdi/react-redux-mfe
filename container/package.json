@@ -14,12 +14,14 @@
   ],
   "scripts": {
     "build": "webpack",
-    "start": "node ./src/config/web.config.js && webpack serve"
+    "start": "webpack serve"
   },
   "private": false,
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
     "redux-micro-frontend": "1.0.0"
   },
   "devDependencies": {

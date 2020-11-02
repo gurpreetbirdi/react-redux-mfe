@@ -1,8 +1,8 @@
 const fs = require("fs-extra");
 
 const bundleJsUrls = [
-  "http://localhost:4001/main.bundle.js",
-  "http://localhost:5001/main.bundle.js",
+  "http://localhost:3001/main.bundle.js",
+  "http://localhost:3002/main.bundle.js",
 ];
 
 function loadMicrofrontendBundle() {
