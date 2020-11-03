@@ -1,8 +1,8 @@
 {
-  "name": "react-redux-mfe-todo",
+  "name": "react-redux-mfe-todo-app",
   "version": "0.1.0",
   "license": "MIT",
-  "description": "This is a sample app with counter",
+  "description": "This is a sample app with todo",
   "keywords": [
     "redux",
     "micro frontend",
@@ -22,7 +22,6 @@
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "babel-eslint": "^10.1.0",
@@ -34,8 +33,6 @@
     "react-dom": "^16.14.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
-    "redux-micro-frontend": "1.0.0",
-    "redux-thunk": "^2.3.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.1.3",
     "webpack-cli": "^4.1.0",
