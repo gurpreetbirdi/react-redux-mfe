@@ -30,7 +30,7 @@ run `npm install` or `yarn install`
 
 To launch app in standalone mode
 run `npm start`
-Browse http://localhost:3001
+Browse http://localhost:3002
 
 To launch app in container mode
 run `npm run start-component`
